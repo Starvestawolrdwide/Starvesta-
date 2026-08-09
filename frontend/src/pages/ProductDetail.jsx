@@ -156,6 +156,8 @@ export default function ProductDetail() {
                 <li className="flex justify-between"><span className="font-semibold">{t("origin")}</span><span>{product.origin}</span></li>
                 <li className="flex justify-between"><span className="font-semibold">Incoterms</span><span>EXW / FOB / CIF / DAP / DDP</span></li>
                 <li className="flex justify-between"><span className="font-semibold">Payment</span><span>TT / LC (as per contract)</span></li>
+                <li className="flex justify-between"><span className="font-semibold">Lead Time</span><span>7–21 days by product</span></li>
+                <li className="flex justify-between"><span className="font-semibold">Samples</span><span>Paid samples, worldwide courier</span></li>
                 <li className="flex justify-between"><span className="font-semibold">Quotes in</span><span>USD / INR</span></li>
               </ul>
               <div className="mt-5 flex flex-wrap gap-2">

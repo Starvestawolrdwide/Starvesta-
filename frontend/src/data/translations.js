@@ -31,6 +31,10 @@ export const translations = {
     successBuyer: "Registration received! Our team will share the buyer catalogue shortly.",
     footerTagline: "Premium Indian Products. Global Quality. Worldwide Supply.",
     rights: "All rights reserved.", businessProfiles: "Our Business Profiles",
+    statsCountries: "Export Countries", statsLines: "Product Lines", statsCapacity: "MT Monthly Capacity", statsResponse: "Hr Quote Response",
+    processSub: "Our Export Process", processTitle: "From Enquiry to Your Port",
+    assuranceSub: "Buyer Assurance", assuranceTitle: "Built for Serious Importers",
+    certifiedBy: "Certified & Registered",
   },
   hi: {
     home: "होम", products: "उत्पाद", rice: "चावल", bagasse: "बागास उत्पाद", makhana: "मखाना",
@@ -64,5 +68,9 @@ export const translations = {
     successBuyer: "पंजीकरण प्राप्त हुआ! हमारी टीम जल्द ही खरीदार कैटलॉग साझा करेगी।",
     footerTagline: "प्रीमियम भारतीय उत्पाद। वैश्विक गुणवत्ता। विश्वव्यापी आपूर्ति।",
     rights: "सर्वाधिकार सुरक्षित।", businessProfiles: "हमारे बिज़नेस प्रोफ़ाइल",
+    statsCountries: "निर्यात देश", statsLines: "उत्पाद श्रृंखलाएं", statsCapacity: "MT मासिक क्षमता", statsResponse: "घंटे में कोटेशन",
+    processSub: "हमारी निर्यात प्रक्रिया", processTitle: "पूछताछ से आपके बंदरगाह तक",
+    assuranceSub: "खरीदार आश्वासन", assuranceTitle: "गंभीर आयातकों के लिए बनाया गया",
+    certifiedBy: "प्रमाणित और पंजीकृत",
   },
 };

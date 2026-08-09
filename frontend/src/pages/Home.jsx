@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ArrowDown, ShieldCheck, Globe2, Leaf, PackageCheck, Wheat, Sprout, Nut } from "lucide-react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { ArrowRight, ArrowDown, ShieldCheck, Globe2, Leaf, PackageCheck, Wheat, Sprout, Nut, MessageSquare, FileText, Package, FileCheck, Ship, ClipboardCheck, SearchCheck, Tag, Headset, BadgeCheck } from "lucide-react";
 import { useStore, API } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
 
@@ -42,6 +42,43 @@ const whyItems = [
   { icon: Globe2, title: "End-to-End Logistics", text: "EXW to DDP — documentation, customs and freight handled by our export desk." },
   { icon: Leaf, title: "Sustainable Sourcing", text: "Compostable bagasse and farm-gate sourcing that supports Indian growers." },
 ];
+
+const steps = [
+  { icon: MessageSquare, title: "Enquiry & Specs", text: "Share product, grade, quantity and destination port — by form or WhatsApp." },
+  { icon: FileText, title: "Quotation in 24h", text: "Itemised quote with specs, packing, Incoterm pricing and validity." },
+  { icon: Package, title: "Sampling", text: "Paid samples couriered worldwide so you approve quality before the lot." },
+  { icon: ShieldCheck, title: "Quality Inspection", text: "Lot-wise QC with photos, videos and optional SGS / Intertek inspection." },
+  { icon: FileCheck, title: "Documentation", text: "Invoice, packing list, COO, phytosanitary and fumigation — handled for you." },
+  { icon: Ship, title: "Shipment & Updates", text: "FCL/LCL booking via Mundra & Nhava Sheva with tracking till your port." },
+];
+
+const assurance = [
+  { icon: ClipboardCheck, title: "Pre-Shipment QC", text: "Photo and video evidence of your actual lot before it leaves India." },
+  { icon: SearchCheck, title: "Third-Party Inspection", text: "SGS, Intertek or Bureau Veritas inspections welcomed on any order." },
+  { icon: Tag, title: "Private Label & OEM", text: "Your brand, your bags — retail pouches to bulk private labelling." },
+  { icon: Globe2, title: "Flexible Incoterms", text: "EXW, FOB, CIF, DAP, DDP — buy the way your supply chain works." },
+  { icon: ShieldCheck, title: "Cargo Insurance", text: "Marine insurance arranged on request for full transit peace of mind." },
+  { icon: Headset, title: "Dedicated Manager", text: "One export manager from first enquiry to delivery — no call centres." },
+];
+
+const certPills = ["FSSAI", "APEDA", "ISO 22000", "HACCP", "EN 13432 Compostable", "IEC Registered"];
+
+const Counter = ({ value, suffix }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / 1600, 1);
+      setN(Math.round(value * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, value]);
+  return <span ref={ref}>{n}{suffix}</span>;
+};
 
 export default function Home() {
   const { t } = useStore();
@@ -97,6 +134,15 @@ export default function Home() {
               </Link>
             </div>
           </RevealLine>
+          <RevealLine delay={1.1}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2" data-testid="hero-trust-chips">
+              {["FSSAI Licensed", "APEDA Registered", "IEC Certified", "24h Response"].map((chip) => (
+                <span key={chip} className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-bone/60">
+                  <BadgeCheck size={14} className="text-harvest" /> {chip}
+                </span>
+              ))}
+            </div>
+          </RevealLine>
         </motion.div>
 
         <motion.div
@@ -119,6 +165,25 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* STATS STRIP */}
+      <section className="border-b border-forest/10 bg-bone-warm px-6 py-14" data-testid="stats-strip">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 lg:grid-cols-4">
+          {[
+            { value: 25, suffix: "+", label: t("statsCountries") },
+            { value: 3, suffix: "", label: t("statsLines") },
+            { value: 500, suffix: "+", label: t("statsCapacity") },
+            { value: 24, suffix: "", label: t("statsResponse") },
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <p className="font-serif text-5xl font-semibold text-forest md:text-6xl">
+                <Counter value={s.value} suffix={s.suffix} />
+              </p>
+              <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.25em] text-harvest">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* MANIFESTO CHAPTERS */}
       <section className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32" data-testid="manifesto-section">
@@ -211,6 +276,69 @@ export default function Home() {
                 <h3 className="mt-4 font-serif text-2xl font-semibold">{w.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-bone/65">{w.text}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXPORT PROCESS */}
+      <section className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32" data-testid="process-section">
+        <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-harvest">{t("processSub")}</p>
+        <h2 className="mb-16 max-w-2xl font-serif text-4xl font-medium tracking-tight text-forest md:text-5xl">
+          {t("processTitle")}
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+              className="group relative overflow-hidden rounded-2xl border border-forest/10 bg-white p-8 transition-all hover:-translate-y-1 hover:border-harvest/50"
+            >
+              <span className="pointer-events-none absolute -right-2 -top-4 font-serif text-7xl font-semibold text-forest/5 transition-colors group-hover:text-harvest/15">
+                0{i + 1}
+              </span>
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-harvest transition-colors group-hover:bg-harvest group-hover:text-white">
+                <s.icon size={20} />
+              </span>
+              <h3 className="mt-5 font-serif text-2xl font-semibold text-forest">{s.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-forest/65">{s.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* BUYER ASSURANCE — dark */}
+      <section className="bg-forest px-6 py-24 text-bone md:px-10 md:py-32" data-testid="assurance-section">
+        <div className="mx-auto max-w-[1400px]">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-harvest">{t("assuranceSub")}</p>
+          <h2 className="mb-16 max-w-2xl font-serif text-4xl font-medium tracking-tight md:text-5xl">
+            {t("assuranceTitle")}
+          </h2>
+          <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {assurance.map((a, i) => (
+              <motion.div
+                key={a.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
+                className="border-t border-bone/15 pt-6"
+              >
+                <a.icon size={24} className="text-harvest" />
+                <h3 className="mt-4 font-serif text-2xl font-semibold">{a.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-bone/65">{a.text}</p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-16 flex flex-wrap items-center gap-3 border-t border-bone/10 pt-10" data-testid="cert-strip">
+            <span className="mr-2 text-[11px] font-bold uppercase tracking-[0.25em] text-bone/50">{t("certifiedBy")}:</span>
+            {certPills.map((c) => (
+              <span key={c} className="rounded-full border border-harvest/40 px-4 py-2 text-xs font-bold uppercase tracking-wider text-harvest">
+                {c}
+              </span>
             ))}
           </div>
         </div>

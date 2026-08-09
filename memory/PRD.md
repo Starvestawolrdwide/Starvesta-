@@ -33,6 +33,7 @@ Build a premium B2B export + e-commerce website for Starvesta Worldwide Pvt. Ltd
 - About (founders, story), Export Markets (25+ countries, Incoterms, ports, payment terms), Certifications (FSSAI, APEDA, ISO 22000, HACCP, EN 13432, IEC/GST)
 - Business profile mentions (ExportersIndia, IndianYellowPages) in footer
 - Official company logo integrated (navbar, footer, favicon) — cropped from client image, transparent background
+- Foreign-buyer trust layer: hero trust chips (FSSAI/APEDA/IEC/24h), animated stats strip (25+ countries, 500+ MT capacity), 6-step export process section, Buyer Assurance grid (QC, third-party inspection, private label, Incoterms, cargo insurance, dedicated manager), certifications pill strip, lead time + sampling info on product trade tab
 
 ## Backlog / Remaining
 - P0: Replace stock placeholder photos with real product photos from client (photos currently MOCKED with stock images)
