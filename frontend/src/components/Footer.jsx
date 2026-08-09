@@ -8,11 +8,20 @@ export default function Footer() {
     <footer data-testid="site-footer" className="bg-forest-deep text-bone">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4 md:px-10">
         <div>
-          <div className="mb-4 flex items-center gap-2.5">
-            <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-11 w-11 rounded-full bg-white object-contain p-0.5 ring-1 ring-harvest/50" />
-            <span>
-              <span className="block font-serif text-2xl font-semibold">STARVESTA</span>
-              <span className="block text-[9px] font-bold uppercase tracking-[0.28em] text-harvest">Worldwide Pvt. Ltd.</span>
+          <div className="mb-4 flex items-center gap-3">
+            <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-12 w-12 rounded-full bg-white object-contain p-0.5 ring-2 ring-harvest/60" />
+            <span className="leading-none">
+              <span className="flex items-center gap-2">
+                <span className="whitespace-nowrap font-serif text-[26px] font-bold tracking-[0.06em]">STARVESTA</span>
+                <svg viewBox="0 0 40 24" fill="none" className="h-4 w-7 text-harvest" aria-hidden="true">
+                  <path d="M2 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+                  <path d="M28 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+                  <path d="M20 4l2.2 4.4L27 9l-3.5 3 .8 4.6L20 14l-4.3 2.6.8-4.6L13 9l4.8-.6L20 4z" fill="currentColor" />
+                  <circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.7" />
+                  <circle cx="25" cy="12" r="1" fill="currentColor" opacity="0.7" />
+                </svg>
+              </span>
+              <span className="mt-1 block whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.3em] text-harvest">Worldwide Pvt. Ltd.</span>
             </span>
           </div>
           <p className="font-serif text-lg italic text-bone/70">{t("footerTagline")}</p>

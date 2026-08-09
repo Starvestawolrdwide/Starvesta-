@@ -4,6 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBasket, Heart, Globe, Menu, X, Coins } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 
+const LogoOrnament = ({ className = "" }) => (
+  <svg viewBox="0 0 40 24" fill="none" className={className} aria-hidden="true">
+    <path d="M2 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+    <path d="M28 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+    <path d="M20 4l2.2 4.4L27 9l-3.5 3 .8 4.6L20 14l-4.3 2.6.8-4.6L13 9l4.8-.6L20 4z" fill="currentColor" />
+    <circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.7" />
+    <circle cx="25" cy="12" r="1" fill="currentColor" opacity="0.7" />
+  </svg>
+);
+
 export default function Navbar() {
   const { cart, wishlist, lang, setLang, currency, setCurrency, setCartOpen, setWishlistOpen, t } = useStore();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,11 +39,14 @@ export default function Navbar() {
   return (
     <header data-testid="main-navbar" className="sticky top-0 z-50 border-b border-bone/10 bg-forest/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 md:px-8">
-        <Link to="/" data-testid="logo-link" className="flex shrink-0 items-center gap-2.5">
-          <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-10 w-10 rounded-full bg-white object-contain p-0.5 ring-1 ring-harvest/50" />
-          <span className="hidden leading-tight sm:block">
-            <span className="block whitespace-nowrap font-serif text-xl font-semibold tracking-wide text-bone">STARVESTA</span>
-            <span className="block whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.28em] text-harvest">Worldwide Pvt. Ltd.</span>
+        <Link to="/" data-testid="logo-link" className="flex shrink-0 items-center gap-3">
+          <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-11 w-11 rounded-full bg-white object-contain p-0.5 ring-2 ring-harvest/60" />
+          <span className="hidden leading-none sm:block">
+            <span className="flex items-center gap-2">
+              <span className="whitespace-nowrap font-serif text-[22px] font-bold tracking-[0.06em] text-bone">STARVESTA</span>
+              <LogoOrnament className="h-4 w-7 text-harvest" />
+            </span>
+            <span className="mt-1 block whitespace-nowrap text-[9px] font-extrabold uppercase tracking-[0.3em] text-harvest">Worldwide Pvt. Ltd.</span>
           </span>
         </Link>
 
