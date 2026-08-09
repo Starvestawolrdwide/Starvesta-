@@ -34,13 +34,16 @@ Build a premium B2B export + e-commerce website for Starvesta Worldwide Pvt. Ltd
 - Business profile mentions (ExportersIndia, IndianYellowPages) in footer
 - Official company logo integrated (navbar, footer, favicon) — cropped from client image, transparent background
 - Foreign-buyer trust layer: hero trust chips (FSSAI/APEDA/IEC/24h), animated stats strip (25+ countries, 500+ MT capacity), 6-step export process section, Buyer Assurance grid (QC, third-party inspection, private label, Incoterms, cargo insurance, dedicated manager), certifications pill strip, lead time + sampling info on product trade tab
+- Sample Store (/samples): 4 fixed-price sample kits (Rice $29, Makhana $19, Bagasse $24, Combo $49; INR equivalents), quantity stepper, USD/INR-aware Stripe checkout (Flow B via emergentintegrations, test key sk_test_emergent), webhook at /api/webhook/stripe + status polling fallback, orders in `sample_orders` collection, Payment Success/Cancel pages — full paid order verified end-to-end with test card 4242
+- Email alert pipeline (Resend) wired into enquiries, buyer registrations and paid sample orders — sends HTML summary to starvestaworldwide@gmail.com; CODE COMPLETE but dormant until RESEND_API_KEY is added to backend/.env (user must supply key)
 
 ## Backlog / Remaining
-- P0: Replace stock placeholder photos with real product photos from client (photos currently MOCKED with stock images)
+- P0: Replace stock placeholder photos with real product photos from client (WAITING on client to send photos)
+- P0: Add RESEND_API_KEY to backend/.env (user gets free key at resend.com) to activate enquiry/order email alerts — code already wired
 - P0: Connect real domain
 - P1: Email notification to starvestaworldwide@gmail.com on each enquiry (Resend integration)
 - P1: Admin dashboard to view enquiries/buyers, add/edit products
-- P2: Secure online payment (Stripe) for retail/sample orders — user selected it, but deferred since pricing is quote-based
+- P2: Secure online payment (Stripe) for retail/sample orders — DONE (Sample Store, Flow B test mode); move to live keys after Stripe KYC/claim
 - P2: Order tracking (requires order management backend)
 - P2: Additional languages beyond EN/HI
 - P2: Live currency conversion rates for USD/INR toggle (currently display preference only — no prices shown)

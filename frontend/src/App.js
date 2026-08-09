@@ -19,6 +19,9 @@ import ExportMarkets from "@/pages/ExportMarkets";
 import Certifications from "@/pages/Certifications";
 import Contact from "@/pages/Contact";
 import Register from "@/pages/Register";
+import Samples from "@/pages/Samples";
+import PaymentSuccess from "@/pages/PaymentSuccess";
+import PaymentCancel from "@/pages/PaymentCancel";
 
 function SmoothScroll() {
   const lenisRef = useRef(null);
@@ -62,6 +65,9 @@ function App() {
               <Route path="/certifications" element={<Certifications />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/samples" element={<Samples />} />
+              <Route path="/payment/success" element={<PaymentSuccess />} />
+              <Route path="/payment/cancel" element={<PaymentCancel />} />
             </Routes>
           </main>
           <Footer />

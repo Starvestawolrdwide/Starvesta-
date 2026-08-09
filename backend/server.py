@@ -1,14 +1,19 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 import uuid
+import asyncio
+import resend
 from pathlib import Path
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from datetime import datetime, timezone
+from emergentintegrations.payments.stripe.checkout import (
+    StripeCheckout, CheckoutSessionRequest,
+)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -19,6 +24,69 @@ db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
+
+# ---- Email (Resend) ----
+resend.api_key = os.environ.get("RESEND_API_KEY", "")
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "onboarding@resend.dev")
+NOTIFY_EMAIL = os.environ.get("NOTIFY_EMAIL", "starvestaworldwide@gmail.com")
+
+async def notify_email(subject: str, html: str):
+    if not resend.api_key:
+        logging.warning("RESEND_API_KEY not set — email skipped: %s", subject)
+        return
+    try:
+        await asyncio.to_thread(
+            resend.Emails.send,
+            {"from": SENDER_EMAIL, "to": [NOTIFY_EMAIL], "subject": subject, "html": html},
+        )
+    except Exception as e:
+        logging.error("email failed: %s", e)
+
+def enquiry_html(title: str, rows: dict) -> str:
+    trs = "".join(
+        f'<tr><td style="padding:8px 12px;border:1px solid #ddd;font-weight:bold">{k}</td>'
+        f'<td style="padding:8px 12px;border:1px solid #ddd">{v}</td></tr>'
+        for k, v in rows.items() if v
+    )
+    return (
+        '<div style="font-family:Arial,sans-serif;max-width:600px">'
+        f'<h2 style="color:#0F291E">{title}</h2>'
+        f'<table style="border-collapse:collapse;width:100%">{trs}</table>'
+        '<p style="color:#666;font-size:12px">Sent from starvesta website enquiry system.</p></div>'
+    )
+
+# ---- Sample kits (fixed-price, online payment) ----
+IMG_RICE_KIT = "https://images.unsplash.com/photo-1586201375761-83865001e31c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxiYXNtYXRpJTIwcmljZSUyMGdyYWlucyUyMHByZW1pdW18ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=900"
+IMG_BAGASSE_KIT = "https://images.unsplash.com/photo-1727021024931-90c226e8448d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxlY28lMjBmcmllbmRseSUyMGJhZ2Fzc2UlMjBwbGF0ZXMlMjBzdWdhcmNhbmV8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=900"
+IMG_MAKHANA_KIT = "https://images.unsplash.com/photo-1710421576768-ff985fa63b60?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHx3YXRlciUyMGxpbHklMjBzZWVkcyUyMGZveG51dCUyMG1ha2hhbmF8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=900"
+IMG_COMBO_KIT = "https://images.unsplash.com/photo-1724597500306-a4cbb7d1324e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwxfHxjYXJnbyUyMHNoaXAlMjBvY2VhbiUyMGxvZ2lzdGljc3xlbnwwfHx8fDE3ODYyNDg5NDV8MA&ixlib=rb-4.1.0&q=85&w=900"
+
+SAMPLE_KITS = {
+    "rice-sample-kit": {
+        "name": "Premium Rice Sample Kit",
+        "tagline": "5 x 1 kg pouches — 1121, 1509, Sella, Golden Sella & IR64, sealed and labelled.",
+        "contents": ["1121 Basmati — 1 kg", "1509 Basmati — 1 kg", "Sella Basmati — 1 kg", "Golden Sella — 1 kg", "IR64 Long Grain — 1 kg"],
+        "usd": 29.0, "inr": 2400.0, "image": IMG_RICE_KIT,
+    },
+    "makhana-sample-box": {
+        "name": "Makhana Sample Box",
+        "tagline": "Graded 4 / 5 / 6 Suta plus Premium Phool — 750 g total, nitrogen-flushed.",
+        "contents": ["4 Suta — 150 g", "5 Suta — 200 g", "6 Suta — 200 g", "Premium Phool — 200 g"],
+        "usd": 19.0, "inr": 1600.0, "image": IMG_MAKHANA_KIT,
+    },
+    "bagasse-sample-set": {
+        "name": "Bagasse Tableware Sample Set",
+        "tagline": "25-piece assorted set — plates, bowls, trays, clamshell, meal box and cups.",
+        "contents": ["Plates 6\"/9\"/12\"", "Bowls 240/500 ml", "3-compartment tray", "Clamshell box", "Meal box", "Cups 150/250 ml"],
+        "usd": 24.0, "inr": 2000.0, "image": IMG_BAGASSE_KIT,
+    },
+    "combo-sample-box": {
+        "name": "Full Range Sample Box",
+        "tagline": "Everything Starvesta in one box — rice kit + makhana box + bagasse set, export-packed.",
+        "contents": ["All 5 rice varieties (5 kg)", "All 4 makhana grades (750 g)", "25-pc bagasse set", "Spec sheets & price list"],
+        "usd": 49.0, "inr": 4050.0, "image": IMG_COMBO_KIT,
+    },
+}
 
 IMG_RICE = "https://images.unsplash.com/photo-1586201375761-83865001e31c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxiYXNtYXRpJTIwcmljZSUyMGdyYWlucyUyMHByZW1pdW18ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85"
 IMG_BAGASSE = "https://images.unsplash.com/photo-1727021024931-90c226e8448d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxlY28lMjBmcmllbmRseSUyMGJhZ2Fzc2UlMjBwbGF0ZXMlMjBzdWdhcmNhbmV8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85"
@@ -253,6 +321,10 @@ async def create_enquiry(payload: EnquiryCreate):
     doc["created_at"] = datetime.now(timezone.utc).isoformat()
     doc["status"] = "new"
     await db.enquiries.insert_one(doc)
+    rows = {k.replace("_", " ").title(): v for k, v in doc.items() if k not in ("id", "created_at", "status", "items") and v}
+    if doc.get("items"):
+        rows["Items"] = ", ".join(i.get("name", "") for i in doc["items"])
+    await notify_email(f"New {doc['type'].upper()} enquiry — {doc['name']}", enquiry_html(f"New {doc['type']} enquiry", rows))
     return {"id": doc["id"], "status": "received", "message": "Thank you. Our export team will respond within 24 hours."}
 
 @api_router.post("/buyers")
@@ -261,7 +333,116 @@ async def register_buyer(payload: BuyerCreate):
     doc["id"] = str(uuid.uuid4())
     doc["created_at"] = datetime.now(timezone.utc).isoformat()
     await db.buyers.insert_one(doc)
+    rows = {k.replace("_", " ").title(): v for k, v in doc.items() if k not in ("id", "created_at") and v}
+    await notify_email(f"New buyer registration — {doc['name']}", enquiry_html("New buyer registration", rows))
     return {"id": doc["id"], "status": "registered", "message": "Registration received. Our team will share the buyer catalogue shortly."}
+
+# ---- Sample store (Stripe, Flow B) ----
+class SampleCheckoutRequest(BaseModel):
+    sample_id: str
+    quantity: int = Field(1, ge=1, le=20)
+    currency: str = "usd"
+    origin_url: str
+    buyer_email: Optional[str] = None
+
+@api_router.get("/samples")
+async def list_samples():
+    return [{"id": k, **v} for k, v in SAMPLE_KITS.items()]
+
+@api_router.post("/samples/checkout")
+async def sample_checkout(req: SampleCheckoutRequest, request: Request):
+    kit = SAMPLE_KITS.get(req.sample_id)
+    if not kit:
+        raise HTTPException(404, "Sample kit not found")
+    currency = req.currency.lower()
+    if currency not in ("usd", "inr"):
+        raise HTTPException(400, "Unsupported currency")
+    amount = float(kit[currency])
+    host_url = str(request.base_url)
+    webhook_url = f"{host_url}api/webhook/stripe"
+    stripe_checkout = StripeCheckout(api_key=os.environ["STRIPE_API_KEY"], webhook_url=webhook_url)
+    session = await stripe_checkout.create_checkout_session(CheckoutSessionRequest(
+        amount=amount,
+        currency=currency,
+        quantity=req.quantity,
+        success_url=f"{req.origin_url}/payment/success?session_id={{CHECKOUT_SESSION_ID}}",
+        cancel_url=f"{req.origin_url}/payment/cancel",
+        metadata={"sample_id": req.sample_id, "buyer_email": req.buyer_email or ""},
+    ))
+    order = {
+        "id": str(uuid.uuid4()),
+        "session_id": session.session_id,
+        "sample_id": req.sample_id,
+        "sample_name": kit["name"],
+        "quantity": req.quantity,
+        "amount": amount * req.quantity,
+        "currency": currency,
+        "buyer_email": req.buyer_email,
+        "status": "initiated",
+        "payment_status": "pending",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.sample_orders.insert_one(order)
+    return {"checkout_url": session.url, "session_id": session.session_id}
+
+async def mark_order_paid(session_id: str):
+    res = await db.sample_orders.update_one(
+        {"session_id": session_id, "payment_status": {"$ne": "paid"}},
+        {"$set": {"status": "completed", "payment_status": "paid",
+                  "updated_at": datetime.now(timezone.utc).isoformat()}},
+    )
+    if res.modified_count:
+        order = await db.sample_orders.find_one({"session_id": session_id}, {"_id": 0})
+        if order:
+            await notify_email(
+                f"Sample order PAID — {order['sample_name']}",
+                enquiry_html("New paid sample order", {
+                    "Kit": order["sample_name"], "Quantity": order["quantity"],
+                    "Amount": f"{order['amount']} {order['currency'].upper()}",
+                    "Buyer Email": order.get("buyer_email"), "Session": session_id,
+                }),
+            )
+
+@api_router.get("/samples/status/{session_id}")
+async def sample_status(session_id: str, request: Request):
+    record = await db.sample_orders.find_one({"session_id": session_id}, {"_id": 0})
+    if not record:
+        raise HTTPException(404, "Order not found")
+    if record.get("payment_status") != "paid":
+        try:
+            host_url = str(request.base_url)
+            stripe_checkout = StripeCheckout(api_key=os.environ["STRIPE_API_KEY"], webhook_url=f"{host_url}api/webhook/stripe")
+            status = await stripe_checkout.get_checkout_status(session_id)
+            if status.payment_status == "paid":
+                await mark_order_paid(session_id)
+                record = await db.sample_orders.find_one({"session_id": session_id}, {"_id": 0})
+        except Exception as e:
+            logging.error("status check failed: %s", e)
+    return {
+        "session_id": record["session_id"],
+        "status": record["status"],
+        "payment_status": record["payment_status"],
+        "sample_name": record["sample_name"],
+        "quantity": record["quantity"],
+        "amount": record["amount"],
+        "currency": record["currency"],
+    }
+
+@api_router.post("/webhook/stripe")
+async def stripe_webhook(request: Request):
+    body = await request.body()
+    sig = request.headers.get("Stripe-Signature")
+    host_url = str(request.base_url)
+    stripe_checkout = StripeCheckout(api_key=os.environ["STRIPE_API_KEY"], webhook_url=f"{host_url}api/webhook/stripe")
+    try:
+        wh = await stripe_checkout.handle_webhook(body, sig)
+    except Exception as e:
+        logging.error("webhook error: %s", e)
+        raise HTTPException(400, "webhook error")
+    if wh.payment_status == "paid":
+        await mark_order_paid(wh.session_id)
+    return {"status": "ok"}
 
 app.include_router(api_router)
 

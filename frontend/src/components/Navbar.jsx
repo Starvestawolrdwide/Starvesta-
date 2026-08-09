@@ -12,6 +12,7 @@ export default function Navbar() {
   const links = [
     { to: "/", label: t("home") },
     { to: "/products", label: t("products") },
+    { to: "/samples", label: t("sampleStore") },
     { to: "/rice", label: t("rice") },
     { to: "/bagasse-products", label: t("bagasse") },
     { to: "/foxnut-makhana", label: t("makhana") },
@@ -22,7 +23,7 @@ export default function Navbar() {
   ];
 
   const navCls = ({ isActive }) =>
-    `text-[13px] font-semibold tracking-wide transition-colors hover:text-harvest ${isActive ? "text-harvest" : "text-bone/90"}`;
+    `whitespace-nowrap text-xs font-semibold tracking-wide transition-colors hover:text-harvest ${isActive ? "text-harvest" : "text-bone/90"}`;
 
   return (
     <header data-testid="main-navbar" className="sticky top-0 z-50 border-b border-bone/10 bg-forest/95 backdrop-blur-xl">
@@ -35,7 +36,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 xl:flex" data-testid="desktop-nav">
+        <nav className="hidden items-center gap-4 xl:flex" data-testid="desktop-nav">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === "/"} className={navCls} data-testid={`nav-${l.to.replace(/\//g, "") || "home"}`}>
               {l.label}

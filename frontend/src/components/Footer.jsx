@@ -35,6 +35,7 @@ export default function Footer() {
             <li><Link data-testid="footer-markets" className="transition-colors hover:text-harvest" to="/export-markets">{t("markets")}</Link></li>
             <li><Link data-testid="footer-certs" className="transition-colors hover:text-harvest" to="/certifications">{t("certifications")}</Link></li>
             <li><Link data-testid="footer-register" className="transition-colors hover:text-harvest" to="/register">{t("register")}</Link></li>
+            <li><Link data-testid="footer-samples" className="transition-colors hover:text-harvest" to="/samples">{t("sampleStore")}</Link></li>
           </ul>
           <h4 className="mb-3 mt-6 text-xs font-bold uppercase tracking-[0.25em] text-harvest">{t("businessProfiles")}</h4>
           <ul className="space-y-2.5 text-sm text-bone/75">
