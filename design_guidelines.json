@@ -1,0 +1,141 @@
+{
+  "theme_name": "Eco Luxury & Harvest Gold",
+  "art_direction": "Premium Indian agricultural export brand. Editorial, harvest-inspired, deep-green eco luxury. The design must feel grounded yet highly premium, combining the organic nature of agriculture with the precision of international logistics.",
+  "typography": {
+    "fonts_to_install": [
+      "@fontsource/cormorant-garamond",
+      "@fontsource/manrope"
+    ],
+    "headings": {
+      "family": "'Cormorant Garamond', serif",
+      "weights": [400, 500, 600, 700],
+      "usage": "H1, H2, H3. Use tracking-tighter for large sizes (text-5xl to text-6xl+). Never use generic sans fonts for headings. Use italic weights occasionally for emphasis (e.g., 'Premium Indian Products. *Global Quality.*')."
+    },
+    "body": {
+      "family": "'Manrope', sans-serif",
+      "weights": [300, 400, 500, 600],
+      "usage": "Paragraphs, navigation, product specs, buttons, forms, and data tables. Clean and modern to contrast the serif headings."
+    },
+    "scale_rules": {
+      "h1": "text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-none",
+      "h2": "text-4xl md:text-5xl tracking-tight leading-tight",
+      "h3": "text-2xl md:text-3xl leading-snug",
+      "body": "text-base md:text-lg leading-relaxed text-opacity-80"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "DEFAULT": "#0F291E",
+        "foreground": "#F4F1EC",
+        "description": "Deep Forest Green. Used for dark mode sections, primary buttons, footers."
+      },
+      "secondary": {
+        "DEFAULT": "#F4F1EC",
+        "foreground": "#0F291E",
+        "description": "Warm Bone/Sand. The default background for light mode sections."
+      },
+      "accent": {
+        "DEFAULT": "#C89B3C",
+        "foreground": "#FFFFFF",
+        "description": "Harvest Gold. Used for badges, highlights, 'Request a Quote' CTAs, and active states."
+      },
+      "background": {
+        "DEFAULT": "#F7F5F0",
+        "dark": "#0A1711"
+      },
+      "surface": {
+        "DEFAULT": "#FFFFFF",
+        "dark": "#122E22"
+      },
+      "border": {
+        "DEFAULT": "rgba(15, 41, 30, 0.1)",
+        "dark": "rgba(244, 241, 236, 0.1)"
+      }
+    },
+    "rules": [
+      "Never use pure black or pure white. Always use tinted neutrals.",
+      "Avoid heavy gradients. Use solid colors or very subtle noise/grain textures.",
+      "Ensure minimum 4.5:1 contrast for all text over backgrounds.",
+      "Do NOT use transparent backgrounds for dropdowns or floating navigation."
+    ]
+  },
+  "layouts_and_spacing": {
+    "grid_system": "The 'Bento Tetris' Grid for marketing sections. Use asymmetric grids (e.g., col-span-8 and col-span-4 combinations).",
+    "spacing_scale": "Generous Spacing Philosophy. Use p-12, p-16, p-24 for section padding. Do not cram elements together.",
+    "section_rhythm": "Alternate between Dark (Deep Forest Green) and Light (Warm Bone) backgrounds for clear section delineation.",
+    "image_treatment": "Use clipped frames (rounded corners with distinct radii like rounded-tl-[4rem] rounded-br-[4rem]) or sharp rectangles with 1px borders. Never use heavy drop shadows on images."
+  },
+  "motion_and_interaction": {
+    "libraries": ["framer-motion", "@studio-freight/lenis", "lucide-react"],
+    "hero_animation": "Kinetic typography with masked line-by-line reveal using framer-motion.",
+    "scroll_effects": "Subtle parallax on background images. Elements should fade and slide up slightly on scroll.",
+    "hover_states": "Buttons should lift slightly (-translate-y-1) and change to a brighter/darker shade. Product cards should have image scale on hover.",
+    "marquee": "One slow editorial marquee using react-fast-marquee or CSS keyframes, displaying export destinations or product categories."
+  },
+  "components_strategy": {
+    "buttons": "Pill-shaped or slightly rounded (rounded-md). 'Request a Quote' should be the primary accent (Harvest Gold). 'Add to Enquiry Basket' can be outline or secondary.",
+    "navigation": "Sticky header with backdrop-blur-xl bg-[#F7F5F0]/80 (or dark equivalent). Must include Language (EN/HI) and Currency (USD/INR) toggles, and Wishlist/Cart icons.",
+    "product_card": "Minimalist. High-quality image, subtle border, heading in Cormorant, specs in Manrope. CTA: 'View Details' or 'Add to Quote'.",
+    "rfq_form": "Clean, multi-step or well-organized form using Shadcn UI inputs. High contrast borders.",
+    "whatsapp_float": "Fixed bottom-right circular button with a green WhatsApp brand color (#25D366) or integrated into the brand's Deep Green. Must ping +91 9214315956."
+  },
+  "pages_blueprint": {
+    "Home": {
+      "Hero": "Kinetic text, dark overlay on harvest image, 'Premium Indian Products. Global Quality.'",
+      "Manifesto": "Numbered chapters (01 Rice, 02 Bagasse, 03 Foxnut) with asymmetric layout.",
+      "Marquee": "Slow moving text showing export markets.",
+      "Categories": "Bento grid of the 3 product lines."
+    },
+    "Products (Catalog)": {
+      "Filters": "Sidebar or top bar for categories (Rice, Bagasse, Foxnut).",
+      "Grid": "Responsive 3-column grid.",
+      "Cards": "Show basic specs and 'Add to Quote' button. Hide prices."
+    },
+    "Product_Detail": {
+      "Layout": "Left: Sticky Image Gallery. Right: Product Title, Specs (moisture, broken %, HSN), Packaging, MOQ, 'Add to Enquiry', 'WhatsApp Enquiry'.",
+      "Details": "Use Shadcn Tabs or Accordion for detailed specifications."
+    },
+    "About_Us": "Story-driven, editorial layout. Focus on the Gorakhpur origin and global reach.",
+    "Export_Markets": "Interactive or static world map, or clean list of countries with flag icons.",
+    "Certifications": "Grid of certification logos (ISO, APEDA, FSSAI, etc. - use placeholders if unavailable) with minimal borders.",
+    "Contact_Us": "Two columns: Contact Info (Mr. Suraj Panday & Mr. Prajapati Raviprakash, +91 9214315956, starvestaworldwide@gmail.com) and an Enquiry Form."
+  },
+  "image_urls": {
+    "hero_harvest": {
+      "url": "https://images.unsplash.com/photo-1600721860729-d90ff446f6fa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGhhcnZlc3QlMjBzdW5zZXQlMjBhZ3JpY3VsdHVyZXxlbnwwfHx8fDE3ODYyNDg5NDV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Wheat harvest sunrise. Use for Hero background with bg-black/40 overlay."
+    },
+    "product_rice": {
+      "url": "https://images.unsplash.com/photo-1586201375761-83865001e31c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxiYXNtYXRpJTIwcmljZSUyMGdyYWlucyUyMHByZW1pdW18ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Premium basmati rice grains. Use for Rice Category card/header."
+    },
+    "product_bagasse": {
+      "url": "https://images.unsplash.com/photo-1727021024931-90c226e8448d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxlY28lMjBmcmllbmRseSUyMGJhZ2Fzc2UlMjBwbGF0ZXMlMjBzdWdhcmNhbmV8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85",
+      "description": "White eco-friendly bagasse plates. Use for Bagasse Category."
+    },
+    "product_foxnut": {
+      "url": "https://images.unsplash.com/photo-1710421576768-ff985fa63b60?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHx3YXRlciUyMGxpbHklMjBzZWVkcyUyMGZveG51dCUyMG1ha2hhbmF8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Foxnut/Makhana close up. Use for Foxnut Category."
+    },
+    "logistics_export": {
+      "url": "https://images.unsplash.com/photo-1724597500306-a4cbb7d1324e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwxfHxjYXJnbyUyMHNoaXAlMjBvY2VhbiUyMGxvZ2lzdGljc3xlbnwwfHx8fDE3ODYyNDg5NDV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Aerial view of cargo ship. Use for Export Markets or About Us section."
+    }
+  },
+  "testing": {
+    "requirements": "All interactive elements (buttons, links, inputs, form submissions, language toggles, currency toggles) MUST include a 'data-testid' attribute using kebab-case role-based naming (e.g., 'data-testid=\"add-to-quote-button\"')."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "DO NOT output generic 'AI slop' aesthetics. Push for editorial, spacious, high-end layouts.",
+    "NEVER center-align the main app container. Do NOT add '.App { text-align: center; }' in CSS.",
+    "NEVER use 'transition: all'. Explicitly state transitions (e.g., 'transition-colors', 'transition-transform').",
+    "Never use AI assistant emojis (🤖, 💡, 🎯, etc.) for UI icons. Use lucide-react or standard SVG icons.",
+    "Implement Lenis for smooth scrolling in the root layout.",
+    "When placing text over images (Hero), always apply a contrast overlay (e.g., bg-black/40) or text-shadow.",
+    "Customize scrollbars to hide gutters (hide scrollbar standard styling).",
+    "Prioritize Shadcn/UI for functional elements (Forms, Dropdowns, Tabs, Dialogs) but strip generic Vercel styling to match the Deep Green / Bone White brand palette.",
+    "Ensure the Language (EN/HI) and Currency (USD/INR) toggles are highly visible in the top navigation.",
+    "Write all React code in standard `.jsx` or `.js` files, NO `.tsx`."
+  ]
+}
