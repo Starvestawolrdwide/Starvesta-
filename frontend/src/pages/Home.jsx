@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowDown, ShieldCheck, Globe2, Leaf, PackageCheck, Wheat, Sprout, Nut, CupSoda, MessageSquare, FileText, Package, FileCheck, Ship, ClipboardCheck, SearchCheck, Tag, Headset, BadgeCheck } from "lucide-react";
 import { useStore, API } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
@@ -64,6 +64,88 @@ const assurance = [
 ];
 
 const certPills = ["FSSAI", "APEDA", "ISO 22000", "HACCP", "EN 13432 Compostable", "IEC Registered"];
+
+const showroom = [
+  { img: "/products/hq/rice-1121.jpg", title: "1121 Basmati Rice", sub: "The Grain" },
+  { img: "/products/hq/mk-5sutta.jpg", title: "Raw Phool Makhana", sub: "The Pop" },
+  { img: "/products/hq/plate-round.jpg", title: "Bagasse Tableware", sub: "The Fibre" },
+  { img: "/products/hq/cup-printed.jpg", title: "Printed Paper Cups", sub: "The Cup" },
+  { img: "/products/hq/rice-golden-sella.jpg", title: "Golden Sella Basmati", sub: "The Grain" },
+  { img: "/products/hq/bag-mealbox.jpg", title: "Bagasse Meal Boxes", sub: "The Fibre" },
+];
+
+function ShowroomStrip() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % showroom.length), 5200);
+    return () => clearInterval(t);
+  }, []);
+  const current = showroom[idx];
+  return (
+    <section data-testid="showroom-strip" className="relative h-[70vh] overflow-hidden bg-forest-deep">
+      <AnimatePresence>
+        <motion.div
+          key={idx}
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.4, ease: "easeInOut" }}
+        >
+          <motion.img
+            src={current.img}
+            alt={current.title}
+            className="h-full w-full object-cover"
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.14 }}
+            transition={{ duration: 7, ease: "linear" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/10 to-forest-deep/40" />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 py-5 md:px-10">
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-bone/70">Starvesta Showroom</span>
+        <span data-testid="showroom-counter" className="font-serif text-sm italic text-bone/70">
+          {String(idx + 1).padStart(2, "0")} / {String(showroom.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between px-6 pb-8 md:px-10">
+        <div key={`cap-${idx}`}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-1 text-[11px] font-bold uppercase tracking-[0.3em] text-blue-200"
+          >
+            {current.sub}
+          </motion.p>
+          <motion.h3
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            data-testid="showroom-title"
+            className="mt-1 font-serif text-4xl font-medium text-bone md:text-5xl"
+          >
+            {current.title}
+          </motion.h3>
+        </div>
+        <div className="hidden gap-2 md:flex">
+          {showroom.map((s, i) => (
+            <button
+              key={s.title}
+              data-testid={`showroom-dot-${i}`}
+              onClick={() => setIdx(i)}
+              aria-label={`Show ${s.title}`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${i === idx ? "w-10 bg-harvest" : "w-4 bg-bone/30 hover:bg-bone/60"}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const Counter = ({ value, suffix }) => {
   const ref = useRef(null);
@@ -256,6 +338,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SHOWROOM STRIP */}
+      <ShowroomStrip />
 
       {/* WHY STARVESTA — dark */}
       <section className="bg-forest-deep px-6 py-24 text-bone md:py-32" data-testid="why-section">

@@ -34,6 +34,7 @@ Build a premium B2B export + e-commerce website for Starvesta Worldwide Pvt. Ltd
 - Business profile mentions (ExportersIndia, IndianYellowPages) in footer
 - Official company logo integrated (navbar, footer, favicon) — cropped from client image, transparent background
 - Foreign-buyer trust layer: hero trust chips (FSSAI/APEDA/IEC/24h), animated stats strip (25+ countries, 500+ MT capacity), 6-step export process section, Buyer Assurance grid (QC, third-party inspection, private label, Incoterms, cargo insurance, dedicated manager), certifications pill strip, lead time + sampling info on product trade tab
+- Hero "Starvesta Showroom" cinematic strip: auto-playing slow-motion (Ken Burns) montage of HQ product shots with crossfades, captions, slide counter and dot navigation
 - Theme switched to navy blue + royal accent to match official logo (was forest green + gold); light background changed to ice-blue (#F4F7FC)
 - Catalogue expanded to 33 products; ALL product images now AI-generated high-quality studio photos (Gemini Nano Banana, recreated from client's real brochure photos as reference) saved in /app/frontend/public/products/hq/ — 16 product images upgraded + 7 rice + jumbo/flavoured makhana + 7 generic bagasse = zero stock images left in catalogue
 - New Paper Cups category (6 products, /paper-cups), 4 real bagasse plate SKUs, 6 makhana SKUs (4/5/6 Sutta + 12/15/19mm), brochure specs (Form: Flakes, 25-50kg airtight eco pouches)
