@@ -38,7 +38,7 @@ export default function About() {
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3">
             {[
-              ["Established", "2025"],
+              ["Incorporated", "18 Nov 2025"],
               ["Legal Status", "Pvt. Ltd. Company"],
               ["Business Type", "Exporter · Supplier · Trader"],
               ["Team", "Up to 15 people"],

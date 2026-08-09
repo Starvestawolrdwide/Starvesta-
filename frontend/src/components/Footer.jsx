@@ -60,6 +60,7 @@ export default function Footer() {
             <li className="flex items-start gap-2.5"><Phone size={15} className="mt-0.5 shrink-0 text-harvest" />{COMPANY.phones.join("  |  ")}</li>
             <li className="flex items-start gap-2.5"><Mail size={15} className="mt-0.5 shrink-0 text-harvest" />{COMPANY.email}</li>
             <li className="flex items-start gap-2.5"><MapPin size={15} className="mt-0.5 shrink-0 text-harvest" />{COMPANY.address}</li>
+            <li className="text-xs leading-relaxed text-bone/50">GSTIN: 09ABRCS8427N1Z9 · IEC: ABRCS8427N · CIN: U47721UP2025PTC236679</li>
           </ul>
         </div>
       </div>

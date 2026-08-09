@@ -235,7 +235,7 @@ export default function Home() {
           </RevealLine>
           <RevealLine delay={1.1}>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2" data-testid="hero-trust-chips">
-              {["FSSAI Licensed", "APEDA Registered", "IEC Certified", "24h Response"].map((chip) => (
+              {["GST Registered", "IEC Certified", "GMP Certified", "24h Response"].map((chip) => (
                 <span key={chip} className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-bone/60">
                   <BadgeCheck size={14} className="text-harvest" /> {chip}
                 </span>
