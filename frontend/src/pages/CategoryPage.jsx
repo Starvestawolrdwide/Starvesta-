@@ -9,13 +9,13 @@ const CONFIG = {
     title: "Rice",
     subtitle: "Chapter 01 — The Grain",
     description: "From the world's longest 1121 Basmati to high-volume IR64 and industrial Broken Rice — milled, sorted and aged to export specification in India's finest rice belts.",
-    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxiYXNtYXRpJTIwcmljZSUyMGdyYWlucyUyMHByZW1pdW18ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=2000",
+    image: "/products/hq/rice-1121.jpg",
   },
   bagasse: {
     title: "Bagasse Products",
     subtitle: "Chapter 02 — The Fibre",
     description: "Eco-friendly, compostable and food-grade tableware pressed from sugarcane bagasse — plates, bowls, trays, containers, cups, meal boxes and clamshells for a plastic-free world.",
-    image: "https://images.unsplash.com/photo-1727021024931-90c226e8448d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxlY28lMjBmcmllbmRseSUyMGJhZ2Fzc2UlMjBwbGF0ZXMlMjBzdWdhcmNhbmV8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=2000",
+    image: "/products/hq/plate-round.jpg",
   },
   makhana: {
     title: "Foxnut / Makhana",

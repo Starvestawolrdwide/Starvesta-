@@ -7,9 +7,9 @@ import { useStore, API } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1600721860729-d90ff446f6fa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwxfHx3aGVhdCUyMGhhcnZlc3QlMjBzdW5zZXQlMjBhZ3JpY3VsdHVyZXxlbnwwfHx8fDE3ODYyNDg5NDV8MA&ixlib=rb-4.1.0&q=85&w=2000";
-const IMG_RICE = "https://images.unsplash.com/photo-1586201375761-83865001e31c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxiYXNtYXRpJTIwcmljZSUyMGdyYWlucyUyMHByZW1pdW18ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=1200";
-const IMG_BAGASSE = "https://images.unsplash.com/photo-1727021024931-90c226e8448d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxlY28lMjBmcmllbmRseSUyMGJhZ2Fzc2UlMjBwbGF0ZXMlMjBzdWdhcmNhbmV8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=1200";
-const IMG_MAKHANA = "https://images.unsplash.com/photo-1710421576768-ff985fa63b60?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHx3YXRlciUyMGxpbHklMjBzZWVkcyUyMGZveG51dCUyMG1ha2hhbmF8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=1200";
+const IMG_RICE = "/products/hq/rice-golden-sella.jpg";
+const IMG_BAGASSE = "/products/hq/bag-mealbox.jpg";
+const IMG_MAKHANA = "/products/hq/mk-12mm.jpg";
 const IMG_SHIP = "https://images.unsplash.com/photo-1724597500306-a4cbb7d1324e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwxfHxjYXJnbyUyMHNoaXAlMjBvY2VhbiUyMGxvZ2lzdGljc3xlbnwwfHx8fDE3ODYyNDg5NDV8MA&ixlib=rb-4.1.0&q=85&w=1600";
 
 const MARQUEE_ITEMS = ["United Arab Emirates", "Saudi Arabia", "United States", "United Kingdom", "Netherlands", "Singapore", "Australia", "Qatar", "Oman", "Kenya", "Germany", "Canada", "Malaysia", "South Africa"];

@@ -19,8 +19,8 @@ module.exports = {
                     light: '#2A3F7A',
                 },
                 bone: {
-                    DEFAULT: '#F4F1EC',
-                    warm: '#F7F5F0',
+                    DEFAULT: '#EEF2F9',
+                    warm: '#F4F7FC',
                 },
                 harvest: {
                     DEFAULT: '#3B5BD9',

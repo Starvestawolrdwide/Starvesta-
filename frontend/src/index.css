@@ -6,17 +6,17 @@
 
 @layer base {
     :root {
-        --background: 40 23% 95%;
+        --background: 220 45% 97%;
         --foreground: 226 60% 19%;
-        --card: 40 23% 98%;
+        --card: 0 0% 100%;
         --card-foreground: 226 60% 19%;
-        --popover: 40 23% 98%;
+        --popover: 0 0% 100%;
         --popover-foreground: 226 60% 19%;
         --primary: 226 60% 19%;
-        --primary-foreground: 42 32% 94%;
-        --secondary: 42 32% 94%;
+        --primary-foreground: 220 45% 96%;
+        --secondary: 220 40% 94%;
         --secondary-foreground: 226 60% 19%;
-        --muted: 40 15% 90%;
+        --muted: 220 25% 92%;
         --muted-foreground: 226 15% 40%;
         --accent: 228 68% 54%;
         --accent-foreground: 0 0% 100%;
@@ -51,8 +51,8 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #F4F1EC; }
-::-webkit-scrollbar-thumb { background: #14224F; border-radius: 8px; border: 2px solid #F4F1EC; }
+::-webkit-scrollbar-track { background: #EEF2F9; }
+::-webkit-scrollbar-thumb { background: #14224F; border-radius: 8px; border: 2px solid #EEF2F9; }
 
 @keyframes marquee-slow {
     from { transform: translateX(0); }
