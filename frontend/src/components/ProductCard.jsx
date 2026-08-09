@@ -4,7 +4,7 @@ import { Heart, ShoppingBasket } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/context/StoreContext";
 
-const CAT_LABEL = { rice: "Rice", bagasse: "Bagasse", makhana: "Makhana" };
+const CAT_LABEL = { rice: "Rice", bagasse: "Bagasse", makhana: "Makhana", papercups: "Paper Cups" };
 
 export default function ProductCard({ product, index = 0 }) {
   const { addToCart, toggleWishlist, wishlist, setQuoteProduct, t } = useStore();

@@ -1,6 +1,6 @@
 export const translations = {
   en: {
-    home: "Home", products: "Products", rice: "Rice", bagasse: "Bagasse Products", makhana: "Foxnut / Makhana",
+    home: "Home", products: "Products", rice: "Rice", bagasse: "Bagasse Products", makhana: "Foxnut / Makhana", papercups: "Paper Cups",
     about: "About Us", markets: "Export Markets", certifications: "Certifications", contact: "Contact Us",
     register: "Buyer Registration",
     sampleStore: "Sample Store", samplesTitle: "Try Before You Import.", buyNow: "Buy Sample",
@@ -39,7 +39,7 @@ export const translations = {
     certifiedBy: "Certified & Registered",
   },
   hi: {
-    home: "होम", products: "उत्पाद", rice: "चावल", bagasse: "बागास उत्पाद", makhana: "मखाना",
+    home: "होम", products: "उत्पाद", rice: "चावल", bagasse: "बागास उत्पाद", makhana: "मखाना", papercups: "पेपर कप",
     about: "हमारे बारे में", markets: "निर्यात बाज़ार", certifications: "प्रमाणपत्र", contact: "संपर्क करें",
     register: "खरीदार पंजीकरण",
     sampleStore: "सैंपल स्टोर", samplesTitle: "इम्पोर्ट से पहले ट्राई करें।", buyNow: "सैंपल खरीदें",

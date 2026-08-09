@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 import { useStore, API } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
 
-const CATS = ["all", "rice", "bagasse", "makhana"];
+const CATS = ["all", "rice", "bagasse", "makhana", "papercups"];
 
 export default function Products() {
   const { t } = useStore();
@@ -25,7 +25,7 @@ export default function Products() {
       .finally(() => setLoading(false));
   }, [cat, q]);
 
-  const catLabel = useMemo(() => ({ all: t("all"), rice: t("rice"), bagasse: t("bagasse"), makhana: t("makhana") }), [t]);
+  const catLabel = useMemo(() => ({ all: t("all"), rice: t("rice"), bagasse: t("bagasse"), makhana: t("makhana"), papercups: t("papercups") }), [t]);
 
   return (
     <div data-testid="products-page" className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-20">

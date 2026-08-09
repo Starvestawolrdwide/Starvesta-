@@ -24,6 +24,7 @@ export default function Footer() {
             <li><Link data-testid="footer-rice" className="transition-colors hover:text-harvest" to="/rice">{t("rice")}</Link></li>
             <li><Link data-testid="footer-bagasse" className="transition-colors hover:text-harvest" to="/bagasse-products">{t("bagasse")}</Link></li>
             <li><Link data-testid="footer-makhana" className="transition-colors hover:text-harvest" to="/foxnut-makhana">{t("makhana")}</Link></li>
+            <li><Link data-testid="footer-papercups" className="transition-colors hover:text-harvest" to="/paper-cups">{t("papercups")}</Link></li>
             <li><Link data-testid="footer-all-products" className="transition-colors hover:text-harvest" to="/products">{t("products")}</Link></li>
           </ul>
         </div>

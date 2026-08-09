@@ -13,19 +13,19 @@ module.exports = {
             },
             colors: {
                 forest: {
-                    DEFAULT: '#0F291E',
-                    deep: '#0A1711',
-                    surface: '#122E22',
-                    light: '#1E4A38',
+                    DEFAULT: '#14224F',
+                    deep: '#0A1230',
+                    surface: '#1B2E63',
+                    light: '#2A3F7A',
                 },
                 bone: {
                     DEFAULT: '#F4F1EC',
                     warm: '#F7F5F0',
                 },
                 harvest: {
-                    DEFAULT: '#C89B3C',
-                    light: '#E3B85C',
-                    dark: '#A67E28',
+                    DEFAULT: '#3B5BD9',
+                    light: '#5F82EE',
+                    dark: '#2B46A8',
                 },
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',

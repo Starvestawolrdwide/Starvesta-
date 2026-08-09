@@ -20,8 +20,14 @@ const CONFIG = {
   makhana: {
     title: "Foxnut / Makhana",
     subtitle: "Chapter 03 — The Pop",
-    description: "Hand-popped makhana from the Mithila belt — graded 4 Suta to Jumbo, premium Phool makhana and flavoured retail lines, sorted bright and packed fresh.",
-    image: "https://images.unsplash.com/photo-1710421576768-ff985fa63b60?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHx3YXRlciUyMGxpbHklMjBzZWVkcyUyMGZveG51dCUyMG1ha2hhbmF8ZW58MHx8fHwxNzg2MjQ4OTQ1fDA&ixlib=rb-4.1.0&q=85&w=2000",
+    description: "Hand-popped raw phool makhana — graded 4/5/6 Sutta and 12/15/19 mm, premium Phool and flavoured lines, sorted bright and packed in airtight eco-friendly pouches.",
+    image: "/products/mk-19mm.jpg",
+  },
+  papercups: {
+    title: "Disposable Paper Cups",
+    subtitle: "Chapter 04 — The Cup",
+    description: "Food-grade disposable paper cups from 110 ml to 710 ml — single wall, double wall, plain and custom printed, packed for high-volume beverage service.",
+    image: "/products/cup-printed.jpg",
   },
 };
 

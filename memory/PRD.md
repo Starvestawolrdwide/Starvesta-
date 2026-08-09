@@ -34,6 +34,9 @@ Build a premium B2B export + e-commerce website for Starvesta Worldwide Pvt. Ltd
 - Business profile mentions (ExportersIndia, IndianYellowPages) in footer
 - Official company logo integrated (navbar, footer, favicon) — cropped from client image, transparent background
 - Foreign-buyer trust layer: hero trust chips (FSSAI/APEDA/IEC/24h), animated stats strip (25+ countries, 500+ MT capacity), 6-step export process section, Buyer Assurance grid (QC, third-party inspection, private label, Incoterms, cargo insurance, dedicated manager), certifications pill strip, lead time + sampling info on product trade tab
+- Theme switched to navy blue + royal accent to match official logo (was forest green + gold)
+- Catalogue expanded to 33 products with 16 REAL product photos cropped from client brochure: new Paper Cups category (6 products, /paper-cups), 4 real bagasse plate SKUs, 6 makhana SKUs with real photos (4/5/6 Sutta + 12/15/19mm), brochure specs (Form: Flakes, 25-50kg airtight eco pouches)
+- About page updated with brochure facts (Estd 2025, Pvt Ltd, Exporter/Supplier/Trader, up to 15 team, worldwide market)
 - Sample Store (/samples): 4 fixed-price sample kits (Rice $29, Makhana $19, Bagasse $24, Combo $49; INR equivalents), quantity stepper, USD/INR-aware Stripe checkout (Flow B via emergentintegrations, test key sk_test_emergent), webhook at /api/webhook/stripe + status polling fallback, orders in `sample_orders` collection, Payment Success/Cancel pages — full paid order verified end-to-end with test card 4242
 - Email alert pipeline (Resend) wired into enquiries, buyer registrations and paid sample orders — sends HTML summary to starvestaworldwide@gmail.com; CODE COMPLETE but dormant until RESEND_API_KEY is added to backend/.env (user must supply key)
 

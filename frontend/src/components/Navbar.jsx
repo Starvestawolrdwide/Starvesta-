@@ -16,6 +16,7 @@ export default function Navbar() {
     { to: "/rice", label: t("rice") },
     { to: "/bagasse-products", label: t("bagasse") },
     { to: "/foxnut-makhana", label: t("makhana") },
+    { to: "/paper-cups", label: t("papercups") },
     { to: "/about", label: t("about") },
     { to: "/export-markets", label: t("markets") },
     { to: "/certifications", label: t("certifications") },
@@ -28,11 +29,11 @@ export default function Navbar() {
   return (
     <header data-testid="main-navbar" className="sticky top-0 z-50 border-b border-bone/10 bg-forest/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 md:px-8">
-        <Link to="/" data-testid="logo-link" className="flex items-center gap-2.5">
+        <Link to="/" data-testid="logo-link" className="flex shrink-0 items-center gap-2.5">
           <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-10 w-10 rounded-full bg-white object-contain p-0.5 ring-1 ring-harvest/50" />
-          <span className="leading-tight">
-            <span className="block font-serif text-xl font-semibold tracking-wide text-bone">STARVESTA</span>
-            <span className="block text-[9px] font-bold uppercase tracking-[0.28em] text-harvest">Worldwide Pvt. Ltd.</span>
+          <span className="hidden leading-tight sm:block">
+            <span className="block whitespace-nowrap font-serif text-xl font-semibold tracking-wide text-bone">STARVESTA</span>
+            <span className="block whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.28em] text-harvest">Worldwide Pvt. Ltd.</span>
           </span>
         </Link>
 

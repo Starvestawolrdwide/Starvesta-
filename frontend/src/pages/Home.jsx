@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { ArrowRight, ArrowDown, ShieldCheck, Globe2, Leaf, PackageCheck, Wheat, Sprout, Nut, MessageSquare, FileText, Package, FileCheck, Ship, ClipboardCheck, SearchCheck, Tag, Headset, BadgeCheck } from "lucide-react";
+import { ArrowRight, ArrowDown, ShieldCheck, Globe2, Leaf, PackageCheck, Wheat, Sprout, Nut, CupSoda, MessageSquare, FileText, Package, FileCheck, Ship, ClipboardCheck, SearchCheck, Tag, Headset, BadgeCheck } from "lucide-react";
 import { useStore, API } from "@/context/StoreContext";
 import ProductCard from "@/components/ProductCard";
 
@@ -32,8 +32,10 @@ const chapters = [
     text: "Aged Basmati and high-volume non-Basmati — 1121, 1509, Sella, Golden Sella and Broken Rice, milled and sorted to export specification." },
   { num: "02", icon: Sprout, title: "Bagasse Disposables", to: "/bagasse-products", img: IMG_BAGASSE,
     text: "Plates, bowls, trays, clamshells and meal boxes pressed from sugarcane fibre — compostable, food-grade and plastic-free." },
-  { num: "03", icon: Nut, title: "Foxnut / Makhana", to: "/foxnut-makhana", img: IMG_MAKHANA,
-    text: "Hand-popped Mithila makhana in every suta grade — from everyday 4 Suta to rare Jumbo lots and flavoured retail lines." },
+  { num: "03", icon: Nut, title: "Foxnut / Makhana", to: "/foxnut-makhana", img: "/products/mk-19mm.jpg",
+    text: "Hand-popped raw phool makhana in every grade — 4/5/6 Sutta, 12/15/19 mm, premium Phool and flavoured retail lines." },
+  { num: "04", icon: CupSoda, title: "Paper Cups", to: "/paper-cups", img: "/products/cup-double-wall.jpg",
+    text: "Food-grade disposable paper cups from 110 ml to 710 ml — single wall, double wall, plain and custom printed for your brand." },
 ];
 
 const whyItems = [

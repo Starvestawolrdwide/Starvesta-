@@ -60,6 +60,7 @@ function App() {
               <Route path="/rice" element={<CategoryPage category="rice" />} />
               <Route path="/bagasse-products" element={<CategoryPage category="bagasse" />} />
               <Route path="/foxnut-makhana" element={<CategoryPage category="makhana" />} />
+              <Route path="/paper-cups" element={<CategoryPage category="papercups" />} />
               <Route path="/about" element={<About />} />
               <Route path="/export-markets" element={<ExportMarkets />} />
               <Route path="/certifications" element={<Certifications />} />

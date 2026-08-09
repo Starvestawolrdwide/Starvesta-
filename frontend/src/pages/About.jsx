@@ -33,9 +33,23 @@ export default function About() {
           <p className="mt-5 leading-relaxed text-forest/70">
             {COMPANY.name} was founded in the heart of Uttar Pradesh's agricultural belt with one conviction — that Indian harvests deserve a premium place on the world's tables.
           </p>
-          <p className="mt-4 leading-relaxed text-forest/70">
-            Today we export three product lines: aged Basmati and non-Basmati rice, compostable sugarcane bagasse tableware, and hand-popped Makhana from the Mithila region. Every lot is graded, lab-checked and packed to the buyer's market standard.
+            <p className="mt-4 leading-relaxed text-forest/70">
+            Today we export four product lines: aged Basmati and non-Basmati rice, compostable sugarcane bagasse tableware, hand-popped raw Phool Makhana, and food-grade disposable paper cups. Every lot is graded, lab-checked and packed to the buyer's market standard.
           </p>
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            {[
+              ["Established", "2025"],
+              ["Legal Status", "Pvt. Ltd. Company"],
+              ["Business Type", "Exporter · Supplier · Trader"],
+              ["Team", "Up to 15 people"],
+              ["Market", "Worldwide"],
+            ].map(([k, v]) => (
+              <div key={k} className="rounded-xl border border-forest/10 bg-white px-4 py-3">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-forest/45">{k}</p>
+                <p className="mt-0.5 font-serif text-base font-semibold text-forest">{v}</p>
+              </div>
+            ))}
+          </div>
           <div className="mt-7 flex items-start gap-3 rounded-xl border border-forest/10 bg-white p-5">
             <MapPin size={18} className="mt-1 shrink-0 text-harvest" />
             <p className="text-sm leading-relaxed text-forest/75">{COMPANY.address}</p>
