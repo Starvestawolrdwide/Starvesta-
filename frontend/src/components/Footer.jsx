@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Wheat, Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 import { useStore, COMPANY } from "@/context/StoreContext";
 
 export default function Footer() {
@@ -9,9 +9,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4 md:px-10">
         <div>
           <div className="mb-4 flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-harvest text-forest">
-              <Wheat size={20} />
-            </span>
+            <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-11 w-11 rounded-full bg-white object-contain p-0.5 ring-1 ring-harvest/50" />
             <span>
               <span className="block font-serif text-2xl font-semibold">STARVESTA</span>
               <span className="block text-[9px] font-bold uppercase tracking-[0.28em] text-harvest">Worldwide Pvt. Ltd.</span>

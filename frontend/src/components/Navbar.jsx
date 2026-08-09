@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBasket, Heart, Globe, Menu, X, Coins, Wheat } from "lucide-react";
+import { ShoppingBasket, Heart, Globe, Menu, X, Coins } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 
 export default function Navbar() {
@@ -28,9 +28,7 @@ export default function Navbar() {
     <header data-testid="main-navbar" className="sticky top-0 z-50 border-b border-bone/10 bg-forest/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 md:px-8">
         <Link to="/" data-testid="logo-link" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-harvest text-forest">
-            <Wheat size={18} strokeWidth={2.2} />
-          </span>
+          <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-10 w-10 rounded-full bg-white object-contain p-0.5 ring-1 ring-harvest/50" />
           <span className="leading-tight">
             <span className="block font-serif text-xl font-semibold tracking-wide text-bone">STARVESTA</span>
             <span className="block text-[9px] font-bold uppercase tracking-[0.28em] text-harvest">Worldwide Pvt. Ltd.</span>

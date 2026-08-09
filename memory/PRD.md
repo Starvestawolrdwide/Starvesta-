@@ -32,10 +32,11 @@ Build a premium B2B export + e-commerce website for Starvesta Worldwide Pvt. Ltd
 - WhatsApp floating button (+91 9214315956), Google Maps embed, WhatsApp QR code on Contact page
 - About (founders, story), Export Markets (25+ countries, Incoterms, ports, payment terms), Certifications (FSSAI, APEDA, ISO 22000, HACCP, EN 13432, IEC/GST)
 - Business profile mentions (ExportersIndia, IndianYellowPages) in footer
+- Official company logo integrated (navbar, footer, favicon) — cropped from client image, transparent background
 
 ## Backlog / Remaining
 - P0: Replace stock placeholder photos with real product photos from client (photos currently MOCKED with stock images)
-- P0: Connect real domain + company logo upload
+- P0: Connect real domain
 - P1: Email notification to starvestaworldwide@gmail.com on each enquiry (Resend integration)
 - P1: Admin dashboard to view enquiries/buyers, add/edit products
 - P2: Secure online payment (Stripe) for retail/sample orders — user selected it, but deferred since pricing is quote-based
