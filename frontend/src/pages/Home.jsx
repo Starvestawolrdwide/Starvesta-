@@ -187,9 +187,24 @@ export default function Home() {
 
         <motion.div style={{ y: textY }} className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 md:px-10">
           <RevealLine delay={0.15}>
-            <span data-testid="hero-badge" className="mb-6 inline-flex items-center gap-2 rounded-full border border-harvest/40 bg-forest-deep/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-harvest backdrop-blur">
-              {t("heroBadge")}
-            </span>
+            <div className="mb-8 flex items-center gap-4" data-testid="hero-brand">
+              <img src="/logo.png" alt="Starvesta Worldwide logo" className="h-16 w-16 rounded-full bg-white object-contain p-1 ring-2 ring-harvest/60 md:h-20 md:w-20" />
+              <span className="leading-tight">
+                <span className="flex items-center gap-2.5">
+                  <span className="whitespace-nowrap font-serif text-3xl font-bold tracking-[0.05em] text-bone md:text-4xl">STARVESTA</span>
+                  <svg viewBox="0 0 40 24" fill="none" className="h-5 w-9 text-harvest" aria-hidden="true">
+                    <path d="M2 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+                    <path d="M28 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+                    <path d="M20 4l2.2 4.4L27 9l-3.5 3 .8 4.6L20 14l-4.3 2.6.8-4.6L13 9l4.8-.6L20 4z" fill="currentColor" />
+                    <circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.7" />
+                    <circle cx="25" cy="12" r="1" fill="currentColor" opacity="0.7" />
+                  </svg>
+                </span>
+                <span className="mt-1.5 block whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.32em] text-blue-200 md:text-[11px]" style={{ textShadow: "0 1px 8px rgba(10,18,48,0.9)" }}>
+                  Worldwide Pvt. Ltd. — Gorakhpur, India
+                </span>
+              </span>
+            </div>
           </RevealLine>
           <h1 className="font-serif text-5xl font-medium leading-[1.02] tracking-tight text-bone sm:text-6xl lg:text-[5.5rem]">
             <RevealLine delay={0.3}>{t("heroLine1")}</RevealLine>
