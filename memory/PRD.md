@@ -41,11 +41,10 @@ Build a premium B2B export + e-commerce website for Starvesta Worldwide Pvt. Ltd
 - New Paper Cups category (6 products, /paper-cups), 4 real bagasse plate SKUs, 6 makhana SKUs (4/5/6 Sutta + 12/15/19mm), brochure specs (Form: Flakes, 25-50kg airtight eco pouches)
 - About page updated with brochure facts (Estd 2025, Pvt Ltd, Exporter/Supplier/Trader, up to 15 team, worldwide market)
 - Sample Store (/samples): 4 fixed-price sample kits (Rice $29, Makhana $19, Bagasse $24, Combo $49; INR equivalents), quantity stepper, USD/INR-aware Stripe checkout (Flow B via emergentintegrations, test key sk_test_emergent), webhook at /api/webhook/stripe + status polling fallback, orders in `sample_orders` collection, Payment Success/Cancel pages — full paid order verified end-to-end with test card 4242
-- Email alert pipeline (Resend) wired into enquiries, buyer registrations and paid sample orders — sends HTML summary to starvestaworldwide@gmail.com; CODE COMPLETE but dormant until RESEND_API_KEY is added to backend/.env (user must supply key)
+- Email alert pipeline (Resend) LIVE: every enquiry, buyer registration and paid sample order emails starvestaworldwide@gmail.com (HTML summary); sender onboarding@resend.dev in testing mode (delivers to account owner's email only); verified with live send
 
 ## Backlog / Remaining
 - P0: Replace stock placeholder photos with real product photos from client (WAITING on client to send photos)
-- P0: Add RESEND_API_KEY to backend/.env (user gets free key at resend.com) to activate enquiry/order email alerts — code already wired
 - P0: Connect real domain
 - P1: Email notification to starvestaworldwide@gmail.com on each enquiry (Resend integration)
 - P1: Admin dashboard to view enquiries/buyers, add/edit products
