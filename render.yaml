@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: starvesta-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DB_NAME
+        value: starvesta
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: SENDER_EMAIL
+        value: onboarding@resend.dev
+      - key: NOTIFY_EMAIL
+        value: starvestaworldwide@gmail.com
+      - key: MONGO_URL
+        sync: false
+      - key: STRIPE_API_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+
+  - type: web
+    name: starvesta-frontend
+    runtime: static
+    rootDir: frontend
+    plan: free
+    buildCommand: yarn install && yarn build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        sync: false
