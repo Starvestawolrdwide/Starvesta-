@@ -85,3 +85,8 @@ android-sdk/
 **/.env
 *.log
 scripts/gen_rice.log
+.env.*
+*.env
+credentials.json
+*.key
+.credentials
